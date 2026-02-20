@@ -2,6 +2,12 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  background: #DCBE78;
+  background-image: url("https://www.transparenttextures.com/patterns/lined-paper.png");
+  padding: 0 16px;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
