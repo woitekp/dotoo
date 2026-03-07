@@ -29,3 +29,13 @@ header {
   background: #ccc;
   margin: 0; /* Usuwa domyślne przerwy wokół linii */
 }
+
+footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  letter-spacing: 0.5px;
+}
+
