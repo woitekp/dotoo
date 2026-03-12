@@ -1,11 +1,14 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./Layout/Header";
+import Footer from "./Layout/Footer";
+import Task from "./Task/Task";
 
 function App() {
   return (
     <div>
       <Header />
-      <Footer />  
+      <Task title="tit" content="con"/>
+      <Footer />
+      
     </div>
   );
 }
