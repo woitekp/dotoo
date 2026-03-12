@@ -4,11 +4,14 @@ import Task from "./Task/Task";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Header />
-      <Task title="tit" content="con"/>
+
+      <div className="main">
+        <Task title="title" content="content"/>
+      </div>
+
       <Footer />
-      
     </div>
   );
 }
