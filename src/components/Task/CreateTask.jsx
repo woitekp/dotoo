@@ -56,7 +56,7 @@ function CreateTask(props) {
           rows={isExpanded ? 3 : 1}
         />
         {isExpanded && (
-          <button type="submit">✓</button>
+          <button type="submit">+</button>
         )}
       </form>
     </div>
