@@ -13,6 +13,14 @@ function App() {
     });
   }
 
+    function deleteTask(id) {
+    setTasks(prevTasks => {
+      return prevTasks.filter((taskItem, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="app">
       <Header />
@@ -21,7 +29,13 @@ function App() {
 
       <div className="main">
         {tasks.map((task, index) => (
-          <Task key={index} title={task.title} content={task.content} />
+          <Task
+            key={index}
+            id={index}
+            title={task.title}
+            content={task.content}
+            onDelete={deleteTask}
+          />
         ))}
       </div>
 
