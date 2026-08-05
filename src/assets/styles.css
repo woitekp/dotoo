@@ -42,7 +42,8 @@ header {
   padding: 10px 10px 56px;
   width: 240px;
   margin: 16px;
-  border: 2px solid #777575;
+  border: 4px solid transparent;
+  box-shadow: inset 0 0 0 2px #777575;
 }
 
 .task h1 {
@@ -57,13 +58,21 @@ header {
   word-wrap: break-word;
 }
 
+.task.task-important {
+  box-shadow: inset 0 0 0 4px #b45e5e;
+}
+
+.task.task-done {
+  box-shadow: inset 0 0 0 2px #57b680;
+}
+
+.task.task-done.task-important {
+  box-shadow: inset 0 0 0 4px #57b680;
+}
+
+
 .task button {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  float: none;
-  margin: 0;
-  color: #525252;
+  color: #777575;
   background: #F7F4ED;
   border: none;
   border-radius: 50%;
@@ -73,6 +82,45 @@ header {
   outline: none;
   box-shadow: 0 1px 3px #525252;
 }
+
+.task-actions {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.task-actions button {
+  position: static;
+  float: none;
+  margin: 0;
+}
+
+.important-button {
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.task button.important-button {
+  color: #b45e5e;
+}
+
+.task button.important-button.important-active {
+  color: #F7F4ED;
+  background: #b45e5e;
+}
+
+.task button.done-button {
+  color: #57b680;
+}
+
+.task button.done-button.done-active {
+  color: #F7F4ED;
+  background: #57b680;
+}
+
 
 footer {
   width: 100%;
