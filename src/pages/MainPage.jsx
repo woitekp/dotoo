@@ -8,12 +8,18 @@ function MainPage() {
   const [tasks, setTasks] = useState([]);
 
   function addTask(newTask) {
-    setTasks(prevTasks => [...prevTasks, newTask]);
+    setTasks(prevTasks => [
+      ...prevTasks,
+      {
+        ...newTask,
+        id: Date.now()
+      }
+    ]);
   }
 
   function deleteTask(id) {
     setTasks((prevTasks) =>
-      prevTasks.filter((taskItem, index) => index !== id)
+      prevTasks.filter((task) => task.id !== id)
     );
   }
 
@@ -26,8 +32,8 @@ function MainPage() {
       <div className="main">
         {tasks.map((task, index) => (
           <Task
-            key={index}
-            id={index}
+            key={task.id}
+            id={task.id}
             title={task.title}
             content={task.content}
             onDelete={deleteTask}
