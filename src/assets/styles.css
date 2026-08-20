@@ -37,6 +37,25 @@ header {
   align-content: flex-start;
 }
 
+.submit-button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FCF9F2;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px #525252;
+  cursor: pointer;
+  outline: none;
+}
+
 .task {
   position: relative;
   padding: 10px 10px 56px;
@@ -164,4 +183,34 @@ form.create-task button {
   box-shadow: 0 1px 3px #525252;
   cursor: pointer;
   outline: none;
+}
+
+form.login-form {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #FCF9F2;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px #525252;
+}
+
+form.login-form input {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  background: transparent;
+}
+
+form.login-form input.login-password {
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid #777575;
+}
+
+form.login-form .submit-button {
+  color: #57b680;
 }
