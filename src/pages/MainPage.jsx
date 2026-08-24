@@ -8,19 +8,17 @@ function MainPage() {
   const [tasks, setTasks] = useState([]);
 
   function addTask(newTask) {
-    setTasks(prevTasks => [
+    setTasks((prevTasks) => [
       ...prevTasks,
       {
         ...newTask,
-        id: Date.now()
+        id: Date.now(),
       }
     ]);
   }
 
   function deleteTask(id) {
-    setTasks((prevTasks) =>
-      prevTasks.filter((task) => task.id !== id)
-    );
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   }
 
   return (

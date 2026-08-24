@@ -17,9 +17,11 @@ function Task(props) {
     function handleDelete() {
         props.onDelete(props.id);
     }
-    
+
     return (
-        <div className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}>
+        <div
+            className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}
+        >
             <h1>{props.title}</h1>
             <p>{props.content}</p>
 
@@ -30,7 +32,6 @@ function Task(props) {
                 >
                     <CheckIcon />
                 </button>
-
 
                 <button
                     className={`important-button ${isImportant ? "important-active" : ""}`}
@@ -43,7 +44,6 @@ function Task(props) {
                     <DeleteIcon />
                 </button>
             </div>
-
         </div>
     );
 }

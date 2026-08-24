@@ -1,10 +1,9 @@
 import logoDemo from '@/assets/logo-demo.png';
 
-
 function Header() {
-return (
+  return (
     <header>
-      <img src={logoDemo}/>
+      <img src={logoDemo} />
     </header>
   );
 }
