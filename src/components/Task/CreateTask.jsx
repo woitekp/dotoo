@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 function CreateTask(props) {
   const [isExpanded, setExpanded] = useState(false);
@@ -21,7 +22,7 @@ function CreateTask(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-  
+
     if (draftTask.title.trim() === "" && draftTask.content.trim() === "") return;
 
     props.onAdd(draftTask);
@@ -56,7 +57,9 @@ function CreateTask(props) {
           rows={isExpanded ? 3 : 1}
         />
         {isExpanded && (
-          <button type="submit">+</button>
+          <button className="submit-button" type="submit">
+            <AddIcon fontSize="medium" />
+          </button>
         )}
       </form>
     </div>
