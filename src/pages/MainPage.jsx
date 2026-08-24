@@ -30,7 +30,7 @@ function MainPage() {
       <CreateTask onAdd={addTask} />
 
       <div className="main">
-        {tasks.map((task, index) => (
+        {tasks.map((task) => (
           <Task
             key={task.id}
             id={task.id}
