@@ -3,13 +3,13 @@ import Footer from "../components/Layout/Footer";
 import LoginForm from "../components/Auth/LoginForm";
 
 
-function LoginPage({ onLogin }) {
+function LoginPage() {
   return (
     <div className="app">
       <Header />
 
       <div className="main">
-        <LoginForm onLogin={onLogin} />
+        <LoginForm />
       </div>
 
       <Footer />

@@ -1,15 +1,11 @@
-import { useState } from "react";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
+import useAuth from "./context/auth/useAuth";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useAuth();
 
-  function handleLogin() {
-    setIsLoggedIn(true);
-  }
-
-  return isLoggedIn ? <MainPage /> : <LoginPage onLogin={handleLogin} />;
+  return user ? <MainPage /> : <LoginPage />;
 }
 
 export default App;

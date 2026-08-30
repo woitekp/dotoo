@@ -1,7 +1,9 @@
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import useAuth from "../../context/auth/useAuth";
 
-function LoginForm({ onLogin }) {
+function LoginForm() {
+  const { login } = useAuth();
   const [credentials, setCredentials] = useState({
     login: "",
     password: "",
@@ -18,7 +20,7 @@ function LoginForm({ onLogin }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onLogin();
+    login(credentials);
   }
 
   return (
