@@ -22,6 +22,33 @@ header {
   padding: 16px 32px;
 }
 
+header img {
+  display: block;
+}
+
+.logout-button {
+  position: fixed;
+  top: 16px;
+  right: 32px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #FCF9F2;
+  color: #b45e5e;
+  box-shadow: 0 1px 3px #525252;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.logout-button:hover {
+  background: #b45e5e;
+  color: #FCF9F2;
+}
+
 .app {
   display: flex;
   flex-direction: column;
