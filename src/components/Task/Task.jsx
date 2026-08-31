@@ -27,20 +27,20 @@ function Task(props) {
 
             <div className="task-actions">
                 <button
-                    className={`done-button ${isDone ? "done-active" : ""}`}
+                    className={`icon-button done-button ${isDone ? "done-active" : ""}`}
                     onClick={toggleDone}
                 >
                     <CheckIcon />
                 </button>
 
                 <button
-                    className={`important-button ${isImportant ? "important-active" : ""}`}
+                    className={`icon-button important-button ${isImportant ? "important-active" : ""}`}
                     onClick={toggleImportant}
                 >
                     !
                 </button>
 
-                <button onClick={handleDelete}>
+                <button className="icon-button" onClick={handleDelete}>
                     <DeleteIcon />
                 </button>
             </div>

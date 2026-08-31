@@ -40,7 +40,7 @@ function LoginForm() {
         value={credentials.password}
         placeholder="Password"
       />
-      <button className="submit-button" type="submit">
+      <button className="icon-button submit-button" type="submit">
         <ArrowForwardIcon fontSize="medium" />
       </button>
     </form>

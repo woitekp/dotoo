@@ -57,7 +57,7 @@ function CreateTask(props) {
           rows={isExpanded ? 3 : 1}
         />
         {isExpanded && (
-          <button className="submit-button" type="submit">
+          <button className="icon-button submit-button" type="submit">
             <AddIcon fontSize="medium" />
           </button>
         )}

@@ -9,7 +9,7 @@ function LogoutButton() {
   return (
     <button
       type="button"
-      className="logout-button"
+      className="icon-button logout-button"
       onClick={logout}
     >
       <LogoutIcon fontSize="small" />
