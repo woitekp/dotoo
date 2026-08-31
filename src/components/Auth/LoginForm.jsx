@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import useAuth from "../../context/auth/useAuth";
+import useAuth from "@/context/auth/useAuth";
 
 function LoginForm() {
   const { login } = useAuth();

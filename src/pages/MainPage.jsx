@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Layout/Footer";
-import Task from "../components/Task/Task";
-import CreateTask from "../components/Task/CreateTask";
+import Header from "@/components/Layout/Header";
+import Footer from "@/components/Layout/Footer";
+import Task from "@/components/Task/Task";
+import CreateTask from "@/components/Task/CreateTask";
 
 function MainPage() {
   const [tasks, setTasks] = useState([]);
