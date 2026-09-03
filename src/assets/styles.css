@@ -56,6 +56,9 @@ footer {
 
 
 .icon-button {
+  --pen: var(--pencil-light);
+  --btn-bg: var(--paper);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,8 +69,14 @@ footer {
   border-radius: 50%;
   box-shadow: 0 1px 3px var(--pencil);
   outline: none;
+  color: var(--pen);
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.icon-button:hover {
+  background: var(--pen);
+  color: var(--paper);
 }
 
 .submit-button {
@@ -77,10 +86,11 @@ footer {
 }
 
 .logout-button {
+  --pen: var(--red);
+
   position: fixed;
   top: 16px;
   right: 32px;
-  color: var(--red);
 }
 
 .logout-button:hover {
@@ -123,7 +133,7 @@ footer {
 }
 
 .login-form .submit-button {
-  color: var(--green);
+  --pen: var(--green);
 }
 
 .login-form .submit-button:hover {
@@ -133,7 +143,7 @@ footer {
 
 
 .create-task .submit-button {
-  color: var(--pencil-light);
+  --pen: var(--pencil-light);
 }
 
 .create-task .submit-button:hover {
@@ -182,15 +192,15 @@ footer {
 }
 
 .task .icon-button {
-  background: var(--paper-shade);
+  --btn-bg: var(--paper-shade);
 }
 
 .delete-button {
-  color: var(--pencil-light);
+  --pen: var(--pencil);
 }
 
 .important-button {
-  color: var(--red);
+  --pen: var(--red);
   font-weight: bold;
   font-size: 1.1rem;
 }
@@ -201,7 +211,7 @@ footer {
 }
 
 .done-button {
-  color: var(--green);
+  --pen: var(--green);
 }
 
 .done-button.done-active {
@@ -213,4 +223,5 @@ footer {
 .done-button:hover,
 .delete-button:hover {
   background: var(--paper);
+  color: var(--pen);
 }
