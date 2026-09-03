@@ -24,7 +24,7 @@ function LoginForm() {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <form className="form-card login-form" onSubmit={handleSubmit}>
       <input
         name="login"
         type="text"

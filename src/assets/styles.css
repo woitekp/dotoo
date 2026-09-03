@@ -159,58 +159,43 @@ footer {
   flex-shrink: 0;
 }
 
-form.create-task {
+.form-card {
   position: relative;
   width: 480px;
-  margin: 30px auto 20px auto;
-  background: #FCF9F2;
+  max-width: 100%;
+  margin: 30px auto 20px;
   padding: 15px;
+  background: #FCF9F2;
   border-radius: 7px;
   box-shadow: 0 1px 3px #525252;
 }
 
-form.create-task input,
-form.create-task textarea {
+.form-card input,
+.form-card textarea {
   width: 100%;
-  border: none;
   padding: 4px;
+  background: transparent;
+  border: none;
   outline: none;
-  font-size: 1.2em;
+  color: inherit;
   font-family: inherit;
+  font-size: 1.2em;
+}
+
+.form-card textarea {
   resize: none;
-  background: transparent;
 }
 
-form.create-task .submit-button {
-  color: #777575;
-}
-
-form.login-form {
-  position: relative;
-  width: 480px;
-  margin: 30px auto 20px auto;
-  background: #FCF9F2;
-  padding: 15px;
-  border-radius: 7px;
-  box-shadow: 0 1px 3px #525252;
-}
-
-form.login-form input {
-  width: 100%;
-  border: none;
-  padding: 4px;
-  outline: none;
-  font-size: 1.2em;
-  font-family: inherit;
-  background: transparent;
-}
-
-form.login-form input.login-password {
+.form-card .login-password {
   margin-top: 10px;
   padding-top: 14px;
   border-top: 1px solid #777575;
 }
 
-form.login-form .submit-button {
+.login-form .submit-button {
   color: #57b680;
+}
+
+.create-task .submit-button {
+  color: #777575;
 }

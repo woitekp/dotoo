@@ -38,7 +38,7 @@ function CreateTask(props) {
 
   return (
     <div>
-      <form className="create-task" onSubmit={handleSubmit}>
+      <form className="form-card create-task" onSubmit={handleSubmit}>
         {isExpanded && (
           <input
             name="title"
