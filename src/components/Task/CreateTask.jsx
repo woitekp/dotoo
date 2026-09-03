@@ -2,8 +2,6 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
 function CreateTask(props) {
-  const [isExpanded, setExpanded] = useState(false);
-
   const [draftTask, setDraftTask] = useState({
     title: "",
     content: "",
@@ -32,35 +30,27 @@ function CreateTask(props) {
     });
   }
 
-  function expand() {
-    setExpanded(true);
-  }
-
   return (
     <div>
       <form className="form-card create-task" onSubmit={handleSubmit}>
-        {isExpanded && (
-          <input
-            name="title"
-            onChange={handleChange}
-            value={draftTask.title}
-            placeholder="Title"
-          />
-        )}
+        <input
+          name="title"
+          onChange={handleChange}
+          value={draftTask.title}
+          placeholder="Title"
+        />
 
         <textarea
           name="content"
-          onClick={expand}
           onChange={handleChange}
           value={draftTask.content}
           placeholder="Add a task..."
-          rows={isExpanded ? 3 : 1}
+          rows={3}
         />
-        {isExpanded && (
-          <button className="icon-button submit-button" type="submit">
-            <AddIcon fontSize="medium" />
-          </button>
-        )}
+
+        <button className="icon-button submit-button" type="submit">
+          <AddIcon fontSize="medium" />
+        </button>
       </form>
     </div>
   );
