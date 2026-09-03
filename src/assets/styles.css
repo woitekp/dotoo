@@ -67,6 +67,7 @@ footer {
   box-shadow: 0 1px 3px var(--pencil);
   outline: none;
   cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .submit-button {
@@ -80,7 +81,6 @@ footer {
   top: 16px;
   right: 32px;
   color: var(--red);
-  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .logout-button:hover {
@@ -126,9 +126,19 @@ footer {
   color: var(--green);
 }
 
+.login-form .submit-button:hover {
+  background: var(--green);
+  color: var(--paper);
+}
+
 
 .create-task .submit-button {
   color: var(--pencil-light);
+}
+
+.create-task .submit-button:hover {
+  background: var(--pencil-light);
+  color: var(--paper);
 }
 
 .task {
@@ -197,4 +207,10 @@ footer {
 .done-button.done-active {
   background: var(--green);
   color: var(--paper-shade);
+}
+
+.important-button:hover,
+.done-button:hover,
+.delete-button:hover {
+  background: var(--paper);
 }
