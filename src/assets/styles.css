@@ -95,23 +95,26 @@ header img {
   word-wrap: break-word;
 }
 
-.task.task-important {
+.task-important {
   box-shadow: inset 0 0 0 4px #b45e5e;
 }
 
-.task.task-done {
+.task-done {
   box-shadow: inset 0 0 0 2px #57b680;
 }
 
-.task.task-done.task-important {
+.task-done.task-important {
   box-shadow: inset 0 0 0 4px #57b680;
 }
 
-
-.task button {
+.task .icon-button {
   background: #F7F4ED;
+}
+
+.delete-button {
   color: #777575;
 }
+
 
 .task-actions {
   position: absolute;
@@ -121,32 +124,23 @@ header img {
   gap: 8px;
 }
 
-.task-actions button {
-  position: static;
-  float: none;
-  margin: 0;
-}
-
 .important-button {
   font-weight: bold;
   font-size: 1.1rem;
   padding: 0;
-}
-
-.task button.important-button {
   color: #b45e5e;
 }
 
-.task button.important-button.important-active {
+.important-button.important-active {
   color: #F7F4ED;
   background: #b45e5e;
 }
 
-.task button.done-button {
+.done-button {
   color: #57b680;
 }
 
-.task button.done-button.done-active {
+.done-button.done-active {
   color: #F7F4ED;
   background: #57b680;
 }

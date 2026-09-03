@@ -40,7 +40,7 @@ function Task(props) {
                     !
                 </button>
 
-                <button className="icon-button" onClick={handleDelete}>
+                <button className="icon-button delete-button" onClick={handleDelete}>
                     <DeleteIcon />
                 </button>
             </div>
