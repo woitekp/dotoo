@@ -35,7 +35,7 @@ function LoginForm() {
       <input
         name="password"
         type="password"
-        className="login-password"
+        className="password-field"
         onChange={handleChange}
         value={credentials.password}
         placeholder="Password"
