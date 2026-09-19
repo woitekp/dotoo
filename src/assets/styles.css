@@ -119,14 +119,14 @@ footer {
   outline: none;
   color: inherit;
   font-family: inherit;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .form-card textarea {
   resize: none;
 }
 
-.form-card .login-password {
+.form-card .password-field {
   margin-top: 10px;
   padding-top: 14px;
   border-top: 1px solid var(--pencil-light);
@@ -139,6 +139,59 @@ footer {
 .login-form .submit-button:hover {
   background: var(--green);
   color: var(--paper);
+}
+
+.signup-form .submit-button {
+  --pen: var(--green);
+}
+
+.signup-form .submit-button:hover {
+  background: var(--green);
+  color: var(--paper);
+}
+
+.form-error {
+  margin-top: 10px;
+  margin-left: 4px;
+  color: var(--red);
+}
+
+
+.auth-panel {
+  width: 480px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  color: var(--pencil-light);
+}
+
+.form-divider::before,
+.form-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--pencil-light);
+}
+
+.form-switch {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--pencil-light);
+}
+
+.form-switch a {
+  color: var(--green);
+}
+
+.form-divider,
+.form-switch {
+  font-size: 1.5em;
 }
 
 
