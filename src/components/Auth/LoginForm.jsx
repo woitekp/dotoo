@@ -9,6 +9,8 @@ function LoginForm() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -20,6 +22,14 @@ function LoginForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (Object.values(credentials).some((value) => !value.trim())) {
+      setError("Fill in all fields");
+      return;
+    }
+
+    setError("");
+
     login(credentials);
   }
 
@@ -31,6 +41,7 @@ function LoginForm() {
         onChange={handleChange}
         value={credentials.login}
         placeholder="Login"
+        required
       />
       <input
         name="password"
@@ -39,7 +50,11 @@ function LoginForm() {
         onChange={handleChange}
         value={credentials.password}
         placeholder="Password"
+        required
       />
+
+      {error && <p className="form-error">{error}</p>}
+
       <button className="icon-button submit-button" type="submit">
         <ArrowForwardIcon fontSize="medium" />
       </button>
