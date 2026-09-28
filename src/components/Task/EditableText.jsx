@@ -5,28 +5,28 @@ function fitToContent(element) {
   element.style.height = `${element.scrollHeight}px`;
 }
 
-function EditableText({ tag: Tag, value, onChange}) {
+function EditableText({ tag: Tag, value, onChange }) {
   const [isEdited, setIsEdited] = useState(false);
 
   return (
     <Tag onClick={() => setIsEdited(true)}>
-    {isEdited ? (
+      {isEdited ? (
         <textarea
-            className="task-edit"
-            value={value}
-            autoFocus
-            ref={(element) => element && fitToContent(element)}
-            onChange={(event) => {
+          className="task-edit"
+          value={value}
+          autoFocus
+          ref={(element) => element && fitToContent(element)}
+          onChange={(event) => {
             fitToContent(event.target);
             onChange(event.target.value);
-            }}
-            onBlur={() => setIsEdited(false)}
+          }}
+          onBlur={() => setIsEdited(false)}
         />
-    ) : (
+      ) : (
         value
-    )}
+      )}
     </Tag>
- );
+  );
 }
 
 export default EditableText;

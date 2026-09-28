@@ -4,7 +4,7 @@ import AuthProvider from "@/context/auth/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<AuthProvider>
-		<App />
-	</AuthProvider>
+  <AuthProvider>
+    <App />
+  </AuthProvider>,
 );

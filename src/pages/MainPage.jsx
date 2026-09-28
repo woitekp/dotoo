@@ -13,7 +13,7 @@ function MainPage() {
       {
         ...newTask,
         id: Date.now(),
-      }
+      },
     ]);
   }
 
@@ -22,11 +22,15 @@ function MainPage() {
   }
 
   function editTaskContent(id, content) {
-    setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, content } : task)));
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === id ? { ...task, content } : task)),
+    );
   }
 
   function editTaskTitle(id, title) {
-    setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, title } : task)));
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === id ? { ...task, title } : task)),
+    );
   }
 
   return (

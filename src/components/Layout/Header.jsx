@@ -1,5 +1,5 @@
-import logoDemo from '@/assets/logo-demo.png';
-import LogoutButton from '@/components/Auth/LogoutButton';
+import logoDemo from "@/assets/logo-demo.png";
+import LogoutButton from "@/components/Auth/LogoutButton";
 
 function Header() {
   return (

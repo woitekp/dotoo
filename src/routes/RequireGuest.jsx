@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom";
 
-import useAuth from "@/context/auth/useAuth"
+import useAuth from "@/context/auth/useAuth";
 
 function RequireGuest() {
   const { user } = useAuth();

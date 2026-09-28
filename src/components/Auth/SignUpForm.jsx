@@ -1,10 +1,10 @@
 import { useState } from "react";
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useAuth from "@/context/auth/useAuth";
 
 function SignUpForm() {
   const { login } = useAuth();
-  const [credentials, setCredentials] = useState({ 
+  const [credentials, setCredentials] = useState({
     login: "",
     password: "",
     passwordConfirmation: "",

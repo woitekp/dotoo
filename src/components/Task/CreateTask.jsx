@@ -21,7 +21,8 @@ function CreateTask(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (draftTask.title.trim() === "" && draftTask.content.trim() === "") return;
+    if (draftTask.title.trim() === "" && draftTask.content.trim() === "")
+      return;
 
     props.onAdd(draftTask);
     setDraftTask({
