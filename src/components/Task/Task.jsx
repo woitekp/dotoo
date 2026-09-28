@@ -5,6 +5,8 @@ import { useState } from "react";
 function Task(props) {
     const [isImportant, setIsImportant] = useState(false);
     const [isDone, setIsDone] = useState(false);
+    const [isContentEdited, setIsContentEdited] = useState(false);
+    const [isTitleEdited, setIsTitleEdited] = useState(false);
 
     function toggleImportant() {
         setIsImportant(!isImportant);
@@ -18,12 +20,46 @@ function Task(props) {
         props.onDelete(props.id);
     }
 
+    function fitToContent(element) {
+        element.style.height = "auto";
+        element.style.height = `${element.scrollHeight}px`;
+}
+
     return (
         <div
             className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}
         >
-            <h1>{props.title}</h1>
-            <p>{props.content}</p>
+            {isTitleEdited ? (
+                <textarea
+                    className="task-edit"
+                    value={props.title}
+                    autoFocus
+                    ref={(element) => element && fitToContent(element)}
+                    onChange={(event) => {
+                        fitToContent(event.target);
+                        props.onTitleEdit(props.id, event.target.value);
+                    }}
+                    onBlur={() => setIsTitleEdited(false)}
+                />
+            ) : (
+                <h1 onClick={() => setIsTitleEdited(true)}>{props.title}</h1>
+            )}
+
+            {isContentEdited ? (
+                <textarea
+                    className="task-edit"
+                    value={props.content}
+                    autoFocus
+                    ref={(element) => element && fitToContent(element)}
+                    onChange={(event) => {
+                        fitToContent(event.target);
+                        props.onContentEdit(props.id, event.target.value);
+                    }}
+                    onBlur={() => setIsContentEdited(false)}
+                />
+            ) : (
+                <p onClick={() => setIsContentEdited(true)}>{props.content}</p>
+            )}
 
             <div className="task-actions">
                 <button

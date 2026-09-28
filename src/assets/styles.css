@@ -214,6 +214,19 @@ footer {
   overflow-wrap: break-word;
 }
 
+.task-edit {
+  width: 100%;
+  field-sizing: content;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.5em;
+  resize: none;
+}
+
 .task-important {
   box-shadow: inset 0 0 0 4px var(--red);
 }

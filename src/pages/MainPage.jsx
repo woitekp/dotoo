@@ -21,6 +21,14 @@ function MainPage() {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   }
 
+  function editTaskContent(id, content) {
+    setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, content } : task)));
+  }
+
+  function editTaskTitle(id, title) {
+    setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, title } : task)));
+  }
+
   return (
     <div className="app">
       <Header />
@@ -35,6 +43,8 @@ function MainPage() {
             title={task.title}
             content={task.content}
             onDelete={deleteTask}
+            onContentEdit={editTaskContent}
+            onTitleEdit={editTaskTitle}
           />
         ))}
       </div>
