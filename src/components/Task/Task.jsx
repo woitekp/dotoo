@@ -1,12 +1,12 @@
+import { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import EditableText from "./EditableText";
+
 
 function Task(props) {
     const [isImportant, setIsImportant] = useState(false);
     const [isDone, setIsDone] = useState(false);
-    const [isContentEdited, setIsContentEdited] = useState(false);
-    const [isTitleEdited, setIsTitleEdited] = useState(false);
 
     function toggleImportant() {
         setIsImportant(!isImportant);
@@ -20,46 +20,21 @@ function Task(props) {
         props.onDelete(props.id);
     }
 
-    function fitToContent(element) {
-        element.style.height = "auto";
-        element.style.height = `${element.scrollHeight}px`;
-}
-
     return (
         <div
             className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}
         >
-            {isTitleEdited ? (
-                <textarea
-                    className="task-edit"
-                    value={props.title}
-                    autoFocus
-                    ref={(element) => element && fitToContent(element)}
-                    onChange={(event) => {
-                        fitToContent(event.target);
-                        props.onTitleEdit(props.id, event.target.value);
-                    }}
-                    onBlur={() => setIsTitleEdited(false)}
-                />
-            ) : (
-                <h1 onClick={() => setIsTitleEdited(true)}>{props.title}</h1>
-            )}
+            <EditableText
+                tag="h1"
+                value={props.title}
+                onChange={(value) => props.onTitleEdit(props.id, value)}
+            />
 
-            {isContentEdited ? (
-                <textarea
-                    className="task-edit"
-                    value={props.content}
-                    autoFocus
-                    ref={(element) => element && fitToContent(element)}
-                    onChange={(event) => {
-                        fitToContent(event.target);
-                        props.onContentEdit(props.id, event.target.value);
-                    }}
-                    onBlur={() => setIsContentEdited(false)}
-                />
-            ) : (
-                <p onClick={() => setIsContentEdited(true)}>{props.content}</p>
-            )}
+            <EditableText
+                tag="p"
+                value={props.content}
+                onChange={(value) => props.onContentEdit(props.id, value)}
+            />
 
             <div className="task-actions">
                 <button

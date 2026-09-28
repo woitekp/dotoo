@@ -215,6 +215,7 @@ footer {
 }
 
 .task-edit {
+  display: block;
   width: 100%;
   field-sizing: content;
   padding: 0;
@@ -222,8 +223,7 @@ footer {
   outline: none;
   background: transparent;
   color: inherit;
-  font-family: inherit;
-  font-size: 1.5em;
+  font: inherit;
   resize: none;
 }
 
