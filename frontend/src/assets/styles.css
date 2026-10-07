@@ -4,7 +4,9 @@
   --pencil: #525252;
   --pencil-light: #777575;
   --red: #b45e5e;
+  --red-light: #c28a8a;
   --green: #57b680;
+  --green-light: #83c9a1;
 }
 
 * {
@@ -273,5 +275,15 @@ footer {
 
 .done-button.done-active {
   background: var(--green);
+  color: var(--paper-shade);
+}
+
+.important-button.important-active:hover {
+  background: var(--red-light);
+  color: var(--paper-shade);
+}
+
+.done-button.done-active:hover {
+  background: var(--green-light);
   color: var(--paper-shade);
 }
