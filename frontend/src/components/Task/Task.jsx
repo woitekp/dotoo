@@ -1,18 +1,14 @@
-import { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditableText from "./EditableText";
 
 function Task(props) {
-  const [isImportant, setIsImportant] = useState(false);
-  const [isDone, setIsDone] = useState(false);
-
   function toggleImportant() {
-    setIsImportant(!isImportant);
+    props.onImportantToggle(props.id);
   }
 
   function toggleDone() {
-    setIsDone(!isDone);
+    props.onDoneToggle(props.id);
   }
 
   function handleDelete() {
@@ -21,7 +17,7 @@ function Task(props) {
 
   return (
     <div
-      className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}
+      className={`task ${props.isImportant ? "task-important" : ""} ${props.isDone ? "task-done" : ""}`}
     >
       <EditableText
         tag="h1"
@@ -37,14 +33,14 @@ function Task(props) {
 
       <div className="task-actions">
         <button
-          className={`icon-button done-button ${isDone ? "done-active" : ""}`}
+          className={`icon-button done-button ${props.isDone ? "done-active" : ""}`}
           onClick={toggleDone}
         >
           <CheckIcon />
         </button>
 
         <button
-          className={`icon-button important-button ${isImportant ? "important-active" : ""}`}
+          className={`icon-button important-button ${props.isImportant ? "important-active" : ""}`}
           onClick={toggleImportant}
         >
           !

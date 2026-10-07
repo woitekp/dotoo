@@ -13,6 +13,8 @@ function MainPage() {
       {
         ...newTask,
         id: Date.now(),
+        isImportant: false,
+        isDone: false,
       },
     ]);
   }
@@ -33,6 +35,22 @@ function MainPage() {
     );
   }
 
+  function toggleTaskImportant(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, isImportant: !task.isImportant } : task,
+      ),
+    );
+  }
+
+  function toggleTaskDone(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task,
+      ),
+    );
+  }
+
   return (
     <div className="app">
       <Header />
@@ -46,9 +64,13 @@ function MainPage() {
             id={task.id}
             title={task.title}
             content={task.content}
+            isImportant={task.isImportant}
+            isDone={task.isDone}
             onDelete={deleteTask}
             onContentEdit={editTaskContent}
             onTitleEdit={editTaskTitle}
+            onImportantToggle={toggleTaskImportant}
+            onDoneToggle={toggleTaskDone}
           />
         ))}
       </div>
