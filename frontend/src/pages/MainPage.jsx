@@ -13,6 +13,7 @@ function MainPage() {
       {
         ...newTask,
         id: Date.now(),
+        dueDate: new Date().toISOString(),
         isImportant: false,
         isDone: false,
       },
@@ -32,6 +33,12 @@ function MainPage() {
   function editTaskTitle(id, title) {
     setTasks((prevTasks) =>
       prevTasks.map((task) => (task.id === id ? { ...task, title } : task)),
+    );
+  }
+
+  function editTaskDueDate(id, dueDate) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === id ? { ...task, dueDate } : task)),
     );
   }
 
@@ -64,11 +71,13 @@ function MainPage() {
             id={task.id}
             title={task.title}
             content={task.content}
+            dueDate={task.dueDate}
             isImportant={task.isImportant}
             isDone={task.isDone}
             onDelete={deleteTask}
             onContentEdit={editTaskContent}
             onTitleEdit={editTaskTitle}
+            onDueDateEdit={editTaskDueDate}
             onImportantToggle={toggleTaskImportant}
             onDoneToggle={toggleTaskDone}
           />
