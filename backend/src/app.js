@@ -1,10 +1,17 @@
-import express from "express";
+import express, { Router } from "express";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/api/health", (req, res) => {
+const api = Router();
+
+app.use("/api", api);
+
+api.use("/auth", authRoutes);
+
+api.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
