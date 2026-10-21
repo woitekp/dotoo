@@ -56,3 +56,13 @@ export async function login(req, res) {
 
   res.json({ token: createToken(user.id), user: publicUser(user) });
 }
+
+export async function me(req, res) {
+  const user = await prisma.user.findUnique({ where: { id: req.userId } });
+
+  if (!user) {
+    return res.status(401).json({ error: "Invalid or expired token" });
+  }
+
+  res.json({ user: publicUser(user) });
+}
