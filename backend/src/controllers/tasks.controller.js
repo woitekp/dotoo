@@ -19,19 +19,8 @@ export async function listTasks(req, res) {
 }
 
 export async function createTask(req, res) {
-  const { title, content, dueDate } = req.body ?? {};
-
-  if (!title?.trim()) {
-    return res.status(400).json({ error: "Title is required" });
-  }
-
   const task = await prisma.task.create({
-    data: {
-      title: title.trim(),
-      content: content ?? "",
-      ...(dueDate !== undefined && { dueDate: new Date(dueDate) }),
-      userId: req.userId,
-    },
+    data: { ...req.body, userId: req.userId },
   });
 
   res.status(201).json({ task });
@@ -50,22 +39,7 @@ export async function updateTask(req, res) {
     return res.status(404).json({ error: "Task not found" });
   }
 
-  const { title, content, isImportant, isDone, dueDate } = req.body ?? {};
-  const data = {};
-
-  if (title !== undefined) {
-    if (!title.trim()) {
-      return res.status(400).json({ error: "Title cannot be empty" });
-    }
-    data.title = title.trim();
-  }
-
-  if (content !== undefined) data.content = content;
-  if (isImportant !== undefined) data.isImportant = Boolean(isImportant);
-  if (isDone !== undefined) data.isDone = Boolean(isDone);
-  if (dueDate !== undefined) data.dueDate = new Date(dueDate);
-
-  const task = await prisma.task.update({ where: { id }, data });
+  const task = await prisma.task.update({ where: { id }, data: req.body });
 
   res.json({ task });
 }
