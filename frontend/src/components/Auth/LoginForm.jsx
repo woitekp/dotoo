@@ -10,6 +10,7 @@ function LoginForm() {
   });
 
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -20,7 +21,7 @@ function LoginForm() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (Object.values(credentials).some((value) => !value.trim())) {
@@ -29,8 +30,15 @@ function LoginForm() {
     }
 
     setError("");
+    setIsSubmitting(true);
 
-    login(credentials);
+    try {
+      await login(credentials);
+    } catch (submitError) {
+      setError(submitError.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -55,7 +63,11 @@ function LoginForm() {
 
       {error && <p className="form-error">{error}</p>}
 
-      <button className="icon-button submit-button" type="submit">
+      <button
+        className="icon-button submit-button"
+        type="submit"
+        disabled={isSubmitting}
+      >
         <ArrowForwardIcon fontSize="medium" />
       </button>
     </form>

@@ -3,7 +3,7 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import useAuth from "@/context/auth/useAuth";
 
 function SignUpForm() {
-  const { login } = useAuth();
+  const { register } = useAuth();
   const [credentials, setCredentials] = useState({
     login: "",
     password: "",
@@ -11,6 +11,7 @@ function SignUpForm() {
   });
 
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -21,7 +22,7 @@ function SignUpForm() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (credentials.password !== credentials.passwordConfirmation) {
@@ -35,7 +36,18 @@ function SignUpForm() {
     }
 
     setError("");
-    login(credentials);
+    setIsSubmitting(true);
+
+    try {
+      await register({
+        login: credentials.login,
+        password: credentials.password,
+      });
+    } catch (submitError) {
+      setError(submitError.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -69,7 +81,11 @@ function SignUpForm() {
 
       {error && <p className="form-error">{error}</p>}
 
-      <button className="icon-button submit-button" type="submit">
+      <button
+        className="icon-button submit-button"
+        type="submit"
+        disabled={isSubmitting}
+      >
         <PersonAddAlt1Icon fontSize="small" />
       </button>
     </form>
