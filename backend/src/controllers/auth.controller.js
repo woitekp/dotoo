@@ -1,18 +1,25 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../db.js";
+import {
+  COOKIE_NAME,
+  COOKIE_OPTIONS,
+  COOKIE_MAX_AGE,
+  TOKEN_LIFETIME,
+} from "../session.js";
 
 const SALT_ROUNDS = 10;
-const TOKEN_LIFETIME = "7d";
-
-function createToken(userId) {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, {
-    expiresIn: TOKEN_LIFETIME,
-  });
-}
 
 function publicUser(user) {
   return { id: user.id, login: user.login };
+}
+
+function startSession(res, user) {
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: TOKEN_LIFETIME,
+  });
+
+  res.cookie(COOKIE_NAME, token, { ...COOKIE_OPTIONS, maxAge: COOKIE_MAX_AGE });
 }
 
 export async function register(req, res) {
@@ -28,7 +35,9 @@ export async function register(req, res) {
 
   const user = await prisma.user.create({ data: { login, passwordHash } });
 
-  res.status(201).json({ token: createToken(user.id), user: publicUser(user) });
+  startSession(res, user);
+
+  res.status(201).json({ user: publicUser(user) });
 }
 
 export async function login(req, res) {
@@ -42,7 +51,15 @@ export async function login(req, res) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  res.json({ token: createToken(user.id), user: publicUser(user) });
+  startSession(res, user);
+
+  res.json({ user: publicUser(user) });
+}
+
+export function logout(req, res) {
+  res.clearCookie(COOKIE_NAME, COOKIE_OPTIONS);
+
+  res.status(204).end();
 }
 
 export async function me(req, res) {
