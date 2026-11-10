@@ -1,11 +1,17 @@
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
+const TITLE_MIN_LENGTH = 2;
+const CONTENT_MAX_LENGTH = 200;
+
 function CreateTask(props) {
   const [draftTask, setDraftTask] = useState({
     title: "",
     content: "",
   });
+
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -18,16 +24,21 @@ function CreateTask(props) {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    if (draftTask.title.trim() === "") return;
+    if (draftTask.title.trim().length < TITLE_MIN_LENGTH) {
+      setError(`Title must be at least ${TITLE_MIN_LENGTH} characters`);
+      return;
+    }
 
-    props.onAdd(draftTask);
-    setDraftTask({
-      title: "",
-      content: "",
-    });
+    setError("");
+    setIsSubmitting(true);
+    const added = await props.onAdd(draftTask);
+    setIsSubmitting(false);
+    if (added) {
+      setDraftTask({ title: "", content: "" });
+    }
   }
 
   return (
@@ -45,10 +56,17 @@ function CreateTask(props) {
           onChange={handleChange}
           value={draftTask.content}
           placeholder="Add a task..."
+          maxLength={CONTENT_MAX_LENGTH}
           rows={3}
         />
 
-        <button className="icon-button submit-button" type="submit">
+        {error && <p className="form-error">{error}</p>}
+
+        <button
+          className="icon-button submit-button"
+          type="submit"
+          disabled={isSubmitting}
+        >
           <AddIcon fontSize="medium" />
         </button>
       </form>
