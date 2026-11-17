@@ -1,3 +1,5 @@
+import { COOKIE_SECURE } from "./config.js";
+
 const SESSION_DAYS = 7;
 
 export const COOKIE_NAME = "dotoo_token";
@@ -5,7 +7,7 @@ export const COOKIE_NAME = "dotoo_token";
 export const COOKIE_OPTIONS = {
   httpOnly: true,
   sameSite: "lax",
-  secure: process.env.NODE_ENV === "production",
+  secure: COOKIE_SECURE,
   path: "/",
 };
 

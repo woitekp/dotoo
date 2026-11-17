@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { COOKIE_NAME } from "../session.js";
+import { JWT_SECRET } from "../config.js";
 
 function requireAuth(req, res, next) {
   const token = req.cookies?.[COOKIE_NAME];
@@ -9,7 +10,7 @@ function requireAuth(req, res, next) {
   }
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, JWT_SECRET);
     req.userId = payload.userId;
     next();
   } catch {

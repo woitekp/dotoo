@@ -1,9 +1,8 @@
 import app from "./app.js";
+import { PORT } from "./config.js";
 
-const port = process.env.PORT || 3000;
-
-const server = app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+const server = app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
 });
 
 // Outlive pooled client sockets, or the first request after a pause resets.

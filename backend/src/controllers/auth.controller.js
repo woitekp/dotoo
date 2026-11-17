@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../db.js";
+import { JWT_SECRET } from "../config.js";
 import {
   COOKIE_NAME,
   COOKIE_OPTIONS,
@@ -15,7 +16,7 @@ function publicUser(user) {
 }
 
 function startSession(res, user) {
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
     expiresIn: TOKEN_LIFETIME,
   });
 
