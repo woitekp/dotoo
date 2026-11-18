@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import Task from "@/components/Task/Task";
@@ -10,6 +10,8 @@ function MainPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  const pendingIds = useRef(new Set());
+
   useEffect(() => {
     fetchTasks()
       .then((data) => setTasks(data.tasks))
@@ -18,7 +20,10 @@ function MainPage() {
   }, []);
 
   async function patchTask(id, changes) {
+    if (pendingIds.current.has(id)) return;
+
     setError("");
+    pendingIds.current.add(id);
 
     try {
       const data = await updateTask(id, changes);
@@ -28,6 +33,8 @@ function MainPage() {
       );
     } catch (requestError) {
       setError(requestError.message);
+    } finally {
+      pendingIds.current.delete(id);
     }
   }
 
@@ -45,13 +52,18 @@ function MainPage() {
   }
 
   async function handleDelete(id) {
+    if (pendingIds.current.has(id)) return;
+
     setError("");
+    pendingIds.current.add(id);
 
     try {
       await deleteTask(id);
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     } catch (requestError) {
       setError(requestError.message);
+    } finally {
+      pendingIds.current.delete(id);
     }
   }
 
