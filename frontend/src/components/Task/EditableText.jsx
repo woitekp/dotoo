@@ -7,22 +7,26 @@ function fitToContent(element) {
 
 function EditableText({ tag: Tag, value, onChange }) {
   const [isEdited, setIsEdited] = useState(false);
-
   const [draft, setDraft] = useState(value);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const displayed = isSaving ? draft : value;
 
   function startEditing() {
-    if (isEdited) return;
+    if (isEdited || isSaving) return;
 
     setDraft(value);
     setIsEdited(true);
   }
 
-  function commit() {
+  async function commit() {
     setIsEdited(false);
 
-    if (draft !== value) {
-      onChange(draft);
-    }
+    if (draft === value) return;
+
+    setIsSaving(true);
+    await onChange(draft);
+    setIsSaving(false);
   }
 
   return (
@@ -40,7 +44,7 @@ function EditableText({ tag: Tag, value, onChange }) {
           onBlur={commit}
         />
       ) : (
-        value
+        displayed
       )}
     </Tag>
   );
