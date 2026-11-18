@@ -67,28 +67,6 @@ function MainPage() {
     }
   }
 
-  function handleTitleEdit(id, title) {
-    patchTask(id, { title });
-  }
-
-  function handleContentEdit(id, content) {
-    patchTask(id, { content });
-  }
-
-  function handleDueDateEdit(id, dueDate) {
-    patchTask(id, { dueDate });
-  }
-
-  function handleImportantToggle(id) {
-    const task = tasks.find((task) => task.id === id);
-    patchTask(id, { isImportant: !task.isImportant });
-  }
-
-  function handleDoneToggle(id) {
-    const task = tasks.find((task) => task.id === id);
-    patchTask(id, { isDone: !task.isDone });
-  }
-
   return (
     <div className="app">
       <Header />
@@ -102,18 +80,9 @@ function MainPage() {
           tasks.map((task) => (
             <Task
               key={task.id}
-              id={task.id}
-              title={task.title}
-              content={task.content}
-              dueDate={task.dueDate}
-              isImportant={task.isImportant}
-              isDone={task.isDone}
+              task={task}
+              onChange={patchTask}
               onDelete={handleDelete}
-              onContentEdit={handleContentEdit}
-              onTitleEdit={handleTitleEdit}
-              onDueDateEdit={handleDueDateEdit}
-              onImportantToggle={handleImportantToggle}
-              onDoneToggle={handleDoneToggle}
             />
           ))}
       </div>

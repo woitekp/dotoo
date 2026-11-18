@@ -6,42 +6,34 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CalendarHeader from "@/components/Date/CalendarHeader";
 import EditableText from "./EditableText";
 
-function Task(props) {
+function Task({
+  task: { id, title, content, dueDate, isImportant, isDone },
+  onChange,
+  onDelete,
+}) {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [dateButton, setDateButton] = useState(null);
 
   function handleDueDateChange(value) {
     if (!value?.isValid()) return;
 
-    props.onDueDateEdit(props.id, value.toISOString());
-  }
-
-  function toggleImportant() {
-    props.onImportantToggle(props.id);
-  }
-
-  function toggleDone() {
-    props.onDoneToggle(props.id);
-  }
-
-  function handleDelete() {
-    props.onDelete(props.id);
+    onChange(id, { dueDate: value.toISOString() });
   }
 
   return (
     <div
-      className={`task ${props.isImportant ? "task-important" : ""} ${props.isDone ? "task-done" : ""}`}
+      className={`task ${isImportant ? "task-important" : ""} ${isDone ? "task-done" : ""}`}
     >
       <EditableText
         tag="h1"
-        value={props.title}
-        onChange={(value) => props.onTitleEdit(props.id, value)}
+        value={title}
+        onChange={(value) => onChange(id, { title: value })}
       />
 
       <EditableText
         tag="p"
-        value={props.content}
-        onChange={(value) => props.onContentEdit(props.id, value)}
+        value={content}
+        onChange={(value) => onChange(id, { content: value })}
       />
 
       <button
@@ -50,13 +42,13 @@ function Task(props) {
         ref={setDateButton}
         onClick={() => setIsPickerOpen(true)}
       >
-        {dayjs(props.dueDate).format("L")}
+        {dayjs(dueDate).format("L")}
       </button>
 
       <DatePicker
         open={isPickerOpen}
         onClose={() => setIsPickerOpen(false)}
-        value={dayjs(props.dueDate)}
+        value={dayjs(dueDate)}
         onChange={handleDueDateChange}
         slots={{ calendarHeader: CalendarHeader }}
         slotProps={{
@@ -80,20 +72,23 @@ function Task(props) {
 
       <div className="task-actions">
         <button
-          className={`icon-button done-button ${props.isDone ? "done-active" : ""}`}
-          onClick={toggleDone}
+          className={`icon-button done-button ${isDone ? "done-active" : ""}`}
+          onClick={() => onChange(id, { isDone: !isDone })}
         >
           <CheckIcon />
         </button>
 
         <button
-          className={`icon-button important-button ${props.isImportant ? "important-active" : ""}`}
-          onClick={toggleImportant}
+          className={`icon-button important-button ${isImportant ? "important-active" : ""}`}
+          onClick={() => onChange(id, { isImportant: !isImportant })}
         >
           !
         </button>
 
-        <button className="icon-button delete-button" onClick={handleDelete}>
+        <button
+          className="icon-button delete-button"
+          onClick={() => onDelete(id)}
+        >
           <DeleteIcon />
         </button>
       </div>
